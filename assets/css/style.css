@@ -1,0 +1,9 @@
+.choices {
+    background-color: rgb(226, 157, 226);
+    color: white;
+    display: block;
+}
+
+.choices:hover {
+    background-color:salmon;
+}
