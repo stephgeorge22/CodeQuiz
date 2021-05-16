@@ -23,3 +23,8 @@
     background-color: rgb(226, 157, 226);
     color: white;
 }
+
+.gameOver {
+    text-align: center;
+    margin: 50px;
+}

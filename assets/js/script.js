@@ -51,24 +51,13 @@ function startQuiz() {
 };
 
 // 50 second quiz for 5 questions
-var time = 50;
+var time = 5;
 var intervalId;
-
-function endQuiz() {
-  clearInterval(intervalId);
-  var body = document.body;
-  body.innerHTML = "Game over, You scored " + correctCount;
-
-  highScore();
-}
-
-function highScore() {
-
-}
 
 // time 
 function updateTime() {
   time--;
+  console.log(time);
   timerEl.textContent = "Time: " + time;
   if (time <= 0) {
     endQuiz();
@@ -133,7 +122,55 @@ function checkAnswer(event) {
   setTimeout(nextQuestion, 2000);
 }
 
-renderQuestion();
+function endQuiz() {
+    clearInterval(intervalId);
+    var body = document.body;
+    body.innerHTML = "Game over, your final score is " + correctCount + "! \nEnter initials:";
+    body.setAttribute("class", "gameOver");
+
+    //prompt enter initals
+    // var input = document.body;
+    // input.innerHTML = "Enter initials:"
+    
+    // Create a form 
+    var form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", "submit.php");
+
+    // Create an input element for initials for form
+    var initials = document.createElement("input");
+    initials.setAttribute("type", "text");
+    initials.setAttribute("name", "initials");
+    initials.setAttribute("placeholder", "Initials");
+
+    // create a submit button for form
+    var submit = document.createElement("input");
+    submit.setAttribute("type", "submit");
+    submit.setAttribute("value", "Submit");
+
+    // Append inital input to the form
+    form.appendChild(initials); 
+
+    // Append the submit button to the form
+    form.appendChild(submit); 
+
+    // Append form to body 
+    body.appendChild(form);
+
+    submit.onclick = highScore
+  
+    // highScore();
+}
+  
+function highScore() {
+// highscore will use json.parse and json.stringify to push and pull the items into local storage and make them appear on the page.
+    // var highScore = JSON.parse(window.localStorage.getItem("intials"))
+
+//save highscore to local storage
+
+}
+
+
 optionListEl.addEventListener("click", checkAnswer);
 
 // start quiz on button click
