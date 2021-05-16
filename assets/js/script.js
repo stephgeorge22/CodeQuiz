@@ -45,10 +45,10 @@ function endQuiz() {
   var body = document.body;
   body.innerHTML = "Game over, You scored " + correctCount;
 }
-
+// time 
 function updateTime() {
   time--;
-  timerEl.textContent = time;
+  timerEl.textContent = "Time: " + time;
   if (time <= 0) {
     endQuiz();
   }
@@ -75,8 +75,6 @@ function renderQuestion() {
   // create dynamic buttons
   for (var i = 0; i < choicesLenth; i++) {
     var questionListItem = document.createElement("button");
-    // document.getElementById("myList").style.listStyleType = listValue;
-    // optionListEl.style.listStyleType = listValue; 
     questionListItem.textContent = choices[i];
     questionListItem.setAttribute("class", "choices");
     optionListEl.append(questionListItem); 
@@ -92,6 +90,12 @@ function nextQuestion() {
 }
 
 function checkAnswer(event) {
+
+    // define horizontal line
+    // var line = document.createElement("hr");
+    // line.setAttribute("width", "100px");
+    // document.body.appendChild(line);
+
   clearInterval(intervalId);
   if (event.target.matches("button")) {
     var answer = event.target.textContent;
@@ -103,6 +107,7 @@ function checkAnswer(event) {
       time = time - 5;
       timerEl.textContent = time;
     }
+    // $('#line-div').html(line);
   }
   setTimeout(nextQuestion, 2000);
 }
