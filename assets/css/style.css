@@ -6,3 +6,20 @@
 .choices:hover {
     background-color:salmon;
 }
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+#quiz, #intro {
+    margin:20px;
+}
+
+#start-btn {
+    background-color: rgb(226, 157, 226);
+    color: white;
+}

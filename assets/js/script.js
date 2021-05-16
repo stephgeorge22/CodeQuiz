@@ -32,9 +32,23 @@ var timerEl = document.querySelector("#timer");
 var questionEl = document.querySelector("#question");
 var optionListEl = document.querySelector("#option-list");
 var questionResultEl = document.querySelector("#question-result");
+var intro = document.querySelector("#intro");
+var quiz = document.querySelector("#quiz");
+var startBtn = document.querySelector("#start-btn");
 
 var questionIndex = 0;
 var correctCount = 0;
+
+// start quiz
+function startQuiz() {
+    // hide quiz introduction
+    intro.setAttribute("class", "hide");
+
+    // show quiz
+    quiz.setAttribute("class", "show");
+
+    renderQuestion();
+};
 
 // 50 second quiz for 5 questions
 var time = 50;
@@ -44,7 +58,14 @@ function endQuiz() {
   clearInterval(intervalId);
   var body = document.body;
   body.innerHTML = "Game over, You scored " + correctCount;
+
+  highScore();
 }
+
+function highScore() {
+
+}
+
 // time 
 function updateTime() {
   time--;
@@ -114,4 +135,7 @@ function checkAnswer(event) {
 
 renderQuestion();
 optionListEl.addEventListener("click", checkAnswer);
+
+// start quiz on button click
+startBtn.onclick = startQuiz; 
 
