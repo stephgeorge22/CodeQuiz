@@ -35,6 +35,11 @@ var questionResultEl = document.querySelector("#question-result");
 var intro = document.querySelector("#intro");
 var quiz = document.querySelector("#quiz");
 var startBtn = document.querySelector("#start-btn");
+var highScore = document.querySelector("#highScore");
+var points = document.querySelector("#points");
+var form = document.querySelector("#form");
+var username = document.querySelector("#username");
+var signup = document.querySelector("#signup");
 
 var questionIndex = 0;
 var correctCount = 0;
@@ -51,7 +56,7 @@ function startQuiz() {
 };
 
 // 50 second quiz for 5 questions
-var time = 5;
+var time = 1;
 var intervalId;
 
 // time 
@@ -124,49 +129,65 @@ function checkAnswer(event) {
 
 function endQuiz() {
     clearInterval(intervalId);
-    var body = document.body;
-    body.innerHTML = "Game over, your final score is " + correctCount + "! \nEnter initials:";
-    body.setAttribute("class", "gameOver");
+    // var body = document.body;
 
-    //prompt enter initals
-    // var input = document.body;
-    // input.innerHTML = "Enter initials:"
-    
-    // Create a form 
-    var form = document.createElement("form");
-    form.setAttribute("method", "post");
-    form.setAttribute("action", "submit.php");
+    // hide quiz
+    quiz.setAttribute("class", "hide");
 
-    // Create an input element for initials for form
-    var initials = document.createElement("input");
-    initials.setAttribute("type", "text");
-    initials.setAttribute("name", "initials");
-    initials.setAttribute("placeholder", "Initials");
+    // show form 
+    form.setAttribute("class", "show");
 
-    // create a submit button for form
-    var submit = document.createElement("input");
-    submit.setAttribute("type", "submit");
-    submit.setAttribute("value", "Submit");
+    points.innerHTML = "Game over, your final score is " + correctCount + "! \nEnter initials:";
+    points.setAttribute("class", "gameOver");
 
-    // Append inital input to the form
-    form.appendChild(initials); 
+    let inputScore  = document.getElementById('signup');
 
-    // Append the submit button to the form
-    form.appendChild(submit); 
+    inputScore.addEventListener('submit', (event) => {
+        
+        let userInitials = inputScore.elements['userInitials'];
+       
+        highScores();
 
-    // Append form to body 
-    body.appendChild(form);
-
-    submit.onclick = highScore
-  
-    // highScore();
+        return false;
+    });
 }
   
-function highScore() {
-// highscore will use json.parse and json.stringify to push and pull the items into local storage and make them appear on the page.
-    // var highScore = JSON.parse(window.localStorage.getItem("intials"))
+function highScores() {
 
-//save highscore to local storage
+    // hide quiz
+    intro.setAttribute("class", "hide");
+
+     // hide quiz
+     quiz.setAttribute("class", "hide");
+
+     // hide form 
+     form.setAttribute("class", "hide");
+
+     // show high scores
+     highScore.setAttribute("class", "show");
+
+// highscore will use json.parse and json.stringify to push and pull the items into local storage and make them appear on the page.
+    // var win = JSON.parse(window.localStorage.getItem("userInitials.value"))
+
+    // window.localStorage.setItem('initials', JSON.stringify(initials));
+
+    localStorage.setItem('userInitials.value', JSON.stringify(userInitials.value));
+
+
+//store highscore to local storage
+    // var input = document.getElementById("saveServer");
+    // localStorage.setItem("server", input.val());
+    // window.localStorage.setItem("initials", JSON.stringify(initials));
+
+    //Go to high score page
+    console.log("187");
+    var body = document.body;
+    body.innerHTML = "HIGHSCORE";
+    body.setAttribute("class", "score");
+
+    //save high score with initials
+
+    //display high score with initials 
 
 }
 
