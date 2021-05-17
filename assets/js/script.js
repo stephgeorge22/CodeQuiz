@@ -56,7 +56,7 @@ function startQuiz() {
 };
 
 // 50 second quiz for 5 questions
-var time = 1;
+var time = 50;
 var intervalId;
 
 // time 
@@ -145,14 +145,14 @@ function endQuiz() {
     inputScore.addEventListener('submit', (event) => {
         
         let userInitials = inputScore.elements['userInitials'];
-       
-        highScores();
+        let values = userInitials.value
+        highScores(values);
 
         return false;
     });
 }
   
-function highScores() {
+function highScores(userInitials) {
 
     // hide quiz
     intro.setAttribute("class", "hide");
@@ -166,29 +166,18 @@ function highScores() {
      // show high scores
      highScore.setAttribute("class", "show");
 
-// highscore will use json.parse and json.stringify to push and pull the items into local storage and make them appear on the page.
-    // var win = JSON.parse(window.localStorage.getItem("userInitials.value"))
-
-    // window.localStorage.setItem('initials', JSON.stringify(initials));
-
-    localStorage.setItem('userInitials.value', JSON.stringify(userInitials.value));
-
-
-//store highscore to local storage
-    // var input = document.getElementById("saveServer");
-    // localStorage.setItem("server", input.val());
-    // window.localStorage.setItem("initials", JSON.stringify(initials));
-
     //Go to high score page
-    console.log("187");
     var body = document.body;
     body.innerHTML = "HIGHSCORE";
     body.setAttribute("class", "score");
 
+    // highscore will use json.parse and json.stringify to push and pull the items into local storage and make them appear on the page.
+
     //save high score with initials
-
+    localStorage.setItem("user", userInitials);
+    
     //display high score with initials 
-
+    var win = window.localStorage.getItem("user")
 }
 
 
